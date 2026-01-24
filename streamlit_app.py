@@ -194,8 +194,13 @@ def fetch_risks_in_batches(api_key, workplace, total_items=50, batch_size=10, pr
     return all_risks
 
 # === ARAYÜZ ===
-st.title("🛡️ İş Güvenliği Risk Analizi")
-st.markdown("İşyeri veya sektör adını girerek otomatik risk analizi oluşturun.")
+col1, col2 = st.columns([3, 1])
+with col1:
+    st.title("🛡️ İş Güvenliği Risk Analizi")
+    st.markdown("İşyeri veya sektör adını girerek otomatik risk analizi oluşturun.")
+with col2:
+    st.image("isg_avatar.png", width=150)
+
 
 # API Key Kontrolü
 api_key = None
