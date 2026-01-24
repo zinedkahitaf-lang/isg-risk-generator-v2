@@ -36,7 +36,7 @@ def fetch_risks_from_openai(api_key, workplace):
     import httpx
     
     # httpx client ile OpenAI oluştur (Render için 5 dakika timeout)
-    http_client = httpx.Client(timeout=httpx.Timeout(300.0, connect=60.0))
+    http_client = httpx.Client(timeout=httpx.Timeout(600.0, connect=60.0))
     client = openai.OpenAI(api_key=api_key, http_client=http_client)
     
     prompt = f"""
