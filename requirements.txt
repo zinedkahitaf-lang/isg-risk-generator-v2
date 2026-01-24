@@ -1,5 +1,4 @@
-flask
+streamlit
 openai
 openpyxl
-gunicorn
 httpx
