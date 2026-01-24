@@ -195,12 +195,13 @@ def fetch_risks_in_batches(api_key, workplace, total_items=50, batch_size=10, pr
 
 # === ARAYÜZ ===
 st.title("🛡️ Yapay Zeka Destekli İSG Risk Analizi")
-st.markdown("İşyeri veya sektör adını girerek **Tosyalı Standardında** otomatik risk analizi oluşturun.")
+st.markdown("İşyeri veya sektör adını girerek otomatik risk analizi oluşturun.")
 
 # API Key Kontrolü
 api_key = None
 if "OPENAI_API_KEY" in st.secrets:
     api_key = st.secrets["OPENAI_API_KEY"]
+    # Secret varsa input GÖSTERİLMEZ, arka planda atanır.
 else:
     api_key = st.text_input("OpenAI API Anahtarınızı Girin:", type="password")
     if not api_key:
@@ -250,3 +251,14 @@ if submitted:
                 
         except Exception as e:
             st.error(f"Beklenmeyen bir hata oluştu: {str(e)}")
+
+# Footer (Sabit Alt Bilgi)
+st.markdown("---")
+st.markdown(
+    """
+    <div style='text-align: center; color: #666;'>
+        Bu Uygulama İş Güvenliği Uzmanı(B) Fatih AKDENİZ tarafından geliştirilmiştir.
+    </div>
+    """,
+    unsafe_allow_html=True
+)
