@@ -6,6 +6,7 @@ import io
 from datetime import datetime
 from openpyxl import Workbook
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
+import gc
 
 app = Flask(__name__)
 
@@ -41,7 +42,7 @@ def fetch_risks_from_openai(api_key, workplace):
     
     prompt = f"""
     Sen uzman bir İSG (İş Sağlığı ve Güvenliği) mühendisisin.
-    Görev: '{workplace}' işyeri/sektörü için 50 adet detaylı risk değerlendirmesi yap.
+    Görev: '{workplace}' işyeri/sektörü için 30 adet detaylı risk değerlendirmesi yap.
     
     Fine Kinney Metodu değerleri:
     - Olasılık (O): 0.2, 0.5, 1, 3, 6, 10
@@ -50,7 +51,7 @@ def fetch_risks_from_openai(api_key, workplace):
     
     Çıktı formatı: Sadece saf JSON array döndür. Markdown bloğu kullanma.
     Her obje şu anahtarları içermeli:
-    - sira_no (1'den 50'ye kadar)
+    - sira_no (1'den 30'a kadar)
     - faaliyet_alani (Örn: Genel Yönetim, Üretim Alanı, Depo, vb.)
     - faaliyet_turu (Örn: Çalışma Ortamı, Makine Kullanımı, vb.)
     - tehlike_tanimi (Detaylı tehlike açıklaması)
@@ -234,6 +235,11 @@ def generate():
         
         # Excel oluştur
         wb = create_excel(risks, workplace)
+        
+        # Risk verisini ve içeriği temizle
+        del risks
+        del content
+        gc.collect()
         
         # Belleğe kaydet
         output = io.BytesIO()
