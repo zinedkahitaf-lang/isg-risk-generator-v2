@@ -35,8 +35,8 @@ def fetch_risks_from_openai(api_key, workplace):
     """OpenAI API'den risk analizi al"""
     import httpx
     
-    # httpx client ile OpenAI oluştur (proxy hatası çözümü)
-    http_client = httpx.Client()
+    # httpx client ile OpenAI oluştur (Render için 5 dakika timeout)
+    http_client = httpx.Client(timeout=httpx.Timeout(300.0, connect=60.0))
     client = openai.OpenAI(api_key=api_key, http_client=http_client)
     
     prompt = f"""
