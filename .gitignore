@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.env
+
+# IDE
+.vscode/
+.idea/
+
+# Test files
+*.xlsx
+excel_output.txt
+read_excel.py
+main.py
+
+# OS
+.DS_Store
+Thumbs.db
