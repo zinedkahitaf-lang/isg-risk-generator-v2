@@ -254,7 +254,12 @@ def generate():
         return jsonify({"error": f"AI yanıtı işlenemedi: {str(e)}"}), 500
     except openai.APIError as e:
         return jsonify({"error": f"OpenAI Hatası: {str(e)}"}), 500
+    except openai.AuthenticationError as e:
+        return jsonify({"error": f"API Key geçersiz: {str(e)}"}), 500
     except Exception as e:
+        import traceback
+        error_detail = traceback.format_exc()
+        print(f"HATA: {error_detail}")  # Render log için
         return jsonify({"error": f"Beklenmeyen hata: {str(e)}"}), 500
 
 if __name__ == '__main__':
