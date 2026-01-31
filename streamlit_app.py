@@ -233,8 +233,46 @@ if not api_key:
      st.warning("Devam etmek için Gemini API Key gereklidir.")
      st.stop()
 
-# Varsayılan Model (Prefixsiz)
-selected_model = "gemini-1.5-flash"
+# Otomatik Model Seçimi
+try:
+    genai.configure(api_key=api_key)
+    # Mevcut modelleri listele
+    available = list(genai.list_models())
+    # generateContent destekleyen ilk modeli bul
+    supported_models = [
+        m.name for m in available 
+        if 'generateContent' in m.supported_generation_methods
+    ]
+    
+    # Öncelik sırası: Flash > Pro > Diğerleri
+    selected_model = None
+    if supported_models:
+        # Önce flash var mı bak
+        for m in supported_models:
+            if "flash" in m.lower():
+                selected_model = m
+                break
+        
+        # Yoksa pro var mı bak
+        if not selected_model:
+            for m in supported_models:
+                if "pro" in m.lower() and "vision" not in m.lower():
+                    selected_model = m
+                    break
+        
+        # Hiçbiri yoksa ilkini al
+        if not selected_model:
+            selected_model = supported_models[0]
+            
+    else:
+        # Liste boş döndüyse fallback
+        selected_model = "models/gemini-1.5-flash"
+
+except Exception as e:
+    # Listeleme hatası olursa (yetki vb.) fallback
+    selected_model = "models/gemini-pro"
+    # Debug için log (kullanıcıya gösterme)
+    print(f"Model listeleme hatası: {e}")
 
 with st.form("risk_form"):
     workplace = st.text_input("İşyeri / Sektör Tanımı:", placeholder="Örn: Mobilya Atölyesi, Demir Çelik Fabrikası, İnşaat Şantiyesi...")
