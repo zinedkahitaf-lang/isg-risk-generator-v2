@@ -233,8 +233,8 @@ if not api_key:
      st.warning("Devam etmek için Gemini API Key gereklidir.")
      st.stop()
 
-# Varsayılan Model
-selected_model = "models/gemini-1.5-flash"
+# Varsayılan Model (Prefixsiz)
+selected_model = "gemini-1.5-flash"
 
 with st.form("risk_form"):
     workplace = st.text_input("İşyeri / Sektör Tanımı:", placeholder="Örn: Mobilya Atölyesi, Demir Çelik Fabrikası, İnşaat Şantiyesi...")
