@@ -15,6 +15,201 @@ st.set_page_config(
     layout="wide"
 )
 
+# === CUSTOM CSS - GÖRSEL ŞÖLEN ===
+st.markdown("""
+<style>
+    /* Google Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+    
+    /* Global Styles */
+    * {
+        font-family: 'Inter', sans-serif;
+    }
+    
+    /* Main Background with Gradient */
+    .stApp {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background-attachment: fixed;
+    }
+    
+    /* Content Container with Glassmorphism */
+    .main .block-container {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 3rem 2rem;
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        animation: fadeIn 0.6s ease-in;
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Headers */
+    h1 {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 800;
+        font-size: 3rem !important;
+        margin-bottom: 0.5rem;
+        animation: slideInDown 0.6s ease-out;
+    }
+    
+    @keyframes slideInDown {
+        from { opacity: 0; transform: translateY(-30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    h2, h3 {
+        color: #1a202c;
+        font-weight: 700;
+    }
+    
+    /* Form Containers */
+    .stForm {
+        background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%);
+        border-radius: 15px;
+        padding: 2rem;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        border: 2px solid rgba(102, 126, 234, 0.2);
+        transition: all 0.3s ease;
+    }
+    
+    .stForm:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(102, 126, 234, 0.3);
+    }
+    
+    /* Inputs */
+    .stTextInput input, .stTextArea textarea {
+        border-radius: 10px;
+        border: 2px solid #e2e8f0;
+        padding: 0.75rem;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+    }
+    
+    .stTextInput input:focus, .stTextArea textarea:focus {
+        border-color: #667eea;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+    
+    /* Buttons */
+    .stButton button {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        padding: 0.75rem 2rem;
+        font-weight: 600;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        cursor: pointer;
+    }
+    
+    .stButton button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+    }
+    
+    .stButton button:active {
+        transform: translateY(0);
+    }
+    
+    .stDownloadButton button {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        padding: 0.75rem 2rem;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(245, 87, 108, 0.4);
+    }
+    
+    .stDownloadButton button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(245, 87, 108, 0.6);
+    }
+    
+    /* Progress Bar */
+    .stProgress > div > div {
+        background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+        border-radius: 10px;
+        height: 12px;
+    }
+    
+    /* Slider */
+    .stSlider > div > div > div {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+    
+    /* Success/Error Messages */
+    .stSuccess {
+        background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+        border-radius: 10px;
+        padding: 1rem;
+        border-left: 4px solid #84fab0;
+    }
+    
+    .stError {
+        background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        border-radius: 10px;
+        padding: 1rem;
+        border-left: 4px solid #fa709a;
+    }
+    
+    /* Expander */
+    .streamlit-expanderHeader {
+        background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+        border-radius: 10px;
+        font-weight: 600;
+    }
+    
+    /* Footer Enhancement */
+    footer {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 600;
+    }
+    
+    /* Markdown Text */
+    .stMarkdown {
+        color: #2d3748;
+    }
+    
+    /* Custom Card Effect */
+    div[data-testid="column"] {
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 15px;
+        padding: 1rem;
+        transition: all 0.3s ease;
+    }
+    
+    div[data-testid="column"]:hover {
+        background: rgba(255, 255, 255, 0.8);
+        transform: translateY(-5px);
+    }
+    
+    /* Spinning Animation for Icons */
+    @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.5; }
+    }
+    
+    /* Hide Streamlit Branding */
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    header {visibility: hidden;}
+</style>
+""", unsafe_allow_html=True)
+
 # === YARDIMCI FONKSİYONLAR ===
 
 # Fine Kinney Risk Seviyeleri
@@ -202,8 +397,13 @@ def fetch_risks_in_batches(api_key, model_name, workplace, total_items=50, batch
 # === ARAYÜZ ===
 col1, col2 = st.columns([3, 1])
 with col1:
-    st.title("🛡️ İş Güvenliği Risk Analizi")
-    st.markdown("İşyeri veya sektör adını girerek otomatik risk analizi oluşturun.")
+    st.title("⚡ İş Güvenliği Risk Analizi")
+    st.markdown("""
+        <p style='font-size: 1.2rem; color: #4a5568; margin-top: -1rem;'>
+            🚀 <b>Yapay zeka destekli</b> otomatik risk değerlendirmesi<br>
+            ✨ Dakikalar içinde profesyonel Excel raporları oluşturun
+        </p>
+    """, unsafe_allow_html=True)
 with col2:
     st.image("isg_avatar.png", width=150)
 
@@ -323,10 +523,22 @@ if submitted:
 
 # Footer (Sabit Alt Bilgi)
 st.markdown("---")
-st.markdown(
-    """
-    <div style='text-align: center; color: #666;'>
-        Bu Uygulama İş Güvenliği Uzmanı Fatih AKDENİZ tarafından geliştirilmiştir.
+st.markdown("""
+    <div style='text-align: center; margin-top: 3rem;'>
+        <p style='background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                  -webkit-background-clip: text;
+                  -webkit-text-fill-color: transparent;
+                  font-weight: 700;
+                  font-size: 1.1rem;
+                  margin-bottom: 0.5rem;'>
+            ✨ İSG Risk Analiz Platformu
+        </p>
+        <p style='color: #718096; font-size: 0.9rem;'>
+            Bu Uygulama İş Güvenliği Uzmanı Fatih AKDENİZ tarafından geliştirilmiştir.
+        </p>
+        <p style='color: #cbd5e0; font-size: 0.8rem; margin-top: 1rem;'>
+            🤖 Powered by Google Gemini AI | 📊 Fine-Kinney Metodolojisi
+        </p>
     </div>
     """,
     unsafe_allow_html=True
