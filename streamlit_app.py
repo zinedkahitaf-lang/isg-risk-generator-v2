@@ -5,6 +5,7 @@ import io
 import time
 import gc
 import httpx
+import random
 from openpyxl import Workbook
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 
@@ -471,6 +472,24 @@ if submitted:
     elif not workplace:
         st.error("Lütfen bir işyeri tanımı girin.")
     else:
+        # Random karikatür seçimi
+        cartoons = [
+            "isg_karikatur_1_1770212300830.png",
+            "isg_karikatur_2_1770212343732.png",
+            "isg_karikatur_3_1770212414232.png",
+            "isg_karikatur_4_1770212438376.png",
+            "isg_karikatur_5_1770212455882.png"
+        ]
+        selected_cartoon = random.choice(cartoons)
+        
+        # Karikatürü göster
+        col_cartoon1, col_cartoon2, col_cartoon3 = st.columns([1, 2, 1])
+        with col_cartoon2:
+            st.image(selected_cartoon, use_container_width=True)
+            st.markdown("<p style='text-align: center; color: #667eea; font-weight: 600; margin-top: 0.5rem;'>💡 İSG Bilgi: Güvenlik her zaman önceliğimizdir!</p>", unsafe_allow_html=True)
+        
+        st.markdown("---")
+        
         status_text = st.empty()
         status_text.text("⏳ RİSK ANALİZİ OLUŞTURULUYOR...")
         progress_bar = st.progress(0)
