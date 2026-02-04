@@ -50,13 +50,12 @@ st.markdown("""
     
     /* Headers */
     h1 {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        color: #1a202c;
         font-weight: 800;
         font-size: 3rem !important;
         margin-bottom: 0.5rem;
         animation: slideInDown 0.6s ease-out;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
     }
     
     @keyframes slideInDown {
@@ -172,40 +171,26 @@ st.markdown("""
     }
     
     /* Footer Enhancement */
-    footer {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        font-weight: 600;
+    .custom-footer {
+        text-align: center;
+        margin-top: 3rem;
+        padding: 2rem;
     }
     
-    /* Markdown Text */
-    .stMarkdown {
-        color: #2d3748;
+    .custom-footer h3 {
+        color: #667eea;
+        font-weight: 700;
+        font-size: 1.3rem;
+        margin-bottom: 0.5rem;
     }
     
-    /* Custom Card Effect */
-    div[data-testid="column"] {
-        background: rgba(255, 255, 255, 0.5);
-        border-radius: 15px;
-        padding: 1rem;
-        transition: all 0.3s ease;
-    }
-    
-    div[data-testid="column"]:hover {
-        background: rgba(255, 255, 255, 0.8);
-        transform: translateY(-5px);
-    }
-    
-    /* Spinning Animation for Icons */
-    @keyframes pulse {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0.5; }
+    .custom-footer p {
+        color: #4a5568;
+        font-size: 0.95rem;
     }
     
     /* Hide Streamlit Branding */
     #MainMenu {visibility: hidden;}
-    footer {visibility: hidden;}
     header {visibility: hidden;}
 </style>
 """, unsafe_allow_html=True)
@@ -524,21 +509,10 @@ if submitted:
 # Footer (Sabit Alt Bilgi)
 st.markdown("---")
 st.markdown("""
-    <div style='text-align: center; margin-top: 3rem;'>
-        <p style='background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                  -webkit-background-clip: text;
-                  -webkit-text-fill-color: transparent;
-                  font-weight: 700;
-                  font-size: 1.1rem;
-                  margin-bottom: 0.5rem;'>
-            ✨ İSG Risk Analiz Platformu
-        </p>
-        <p style='color: #718096; font-size: 0.9rem;'>
-            Bu Uygulama İş Güvenliği Uzmanı Fatih AKDENİZ tarafından geliştirilmiştir.
-        </p>
-        <p style='color: #cbd5e0; font-size: 0.8rem; margin-top: 1rem;'>
-            🤖 Powered by Google Gemini AI | 📊 Fine-Kinney Metodolojisi
-        </p>
+    <div class='custom-footer'>
+        <h3>⚡ İSG Risk Analiz Platformu</h3>
+        <p>Bu Uygulama İş Güvenliği Uzmanı <strong>Fatih AKDENİZ</strong> tarafından geliştirilmiştir.</p>
+        <p style='color: #718096; font-size: 0.85rem; margin-top: 1rem;'>📊 Fine-Kinney Metodolojisi ile Risk Değerlendirmesi</p>
     </div>
     """,
     unsafe_allow_html=True
